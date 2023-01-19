@@ -72,7 +72,7 @@ app.post("/login",(req,res,next)=>{
 
 
 
-mongoose.connect(process.env.db_url).then(() => {
+mongoose.connect(process.env.mongodb+srv://r:r@cluster0.rgobshm.mongodb.net/raghav?retryWrites=true&w=majority).then(() => {
   app.listen(8080, () => {
     console.log("server statrted on port 8080");
   });
