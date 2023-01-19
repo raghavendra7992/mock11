@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
-const User = require("./Model/user");
+const userModel= require("./Model/user");
 const bcrypt = require("bcrypt");
 const app = express();
 const jwt=require("jsonwebtoken")
@@ -19,7 +19,7 @@ app.post("/signup", (req, res) => {
         error: err,
       });
     } else {
-      const user = new User({
+      const user = new userModel({
         email: email,
         password: hash,
       });
@@ -40,7 +40,7 @@ app.post("/signup", (req, res) => {
   });
 });
 app.post("/login",(req,res,next)=>{
-    User.find({email:req.body.email})
+    userModel.find({email:req.body.email})
     .exec()
     .then(user=>{
         if(user.length<1){
